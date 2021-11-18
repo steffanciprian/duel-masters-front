@@ -1,10 +1,13 @@
 import {Component} from "react";
+import Arena from "../components/Arena";
+import '../css/HomePage.css';
 
 class HomePage extends Component {
     render() {
         return (
-            <div>
-                <h1> Start duel :0 </h1>
+            <div className='container-duel-masters'>
+                <Arena/>
+
             </div>
         )
     }

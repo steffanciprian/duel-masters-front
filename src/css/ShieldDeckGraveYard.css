@@ -1,0 +1,4 @@
+.shield-deck-graveyard{
+    display: flex;
+    flex-direction: row;
+}

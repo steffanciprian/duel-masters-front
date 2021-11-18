@@ -7,6 +7,7 @@ import ReduxThunk from 'redux-thunk';
 import reportWebVitals from "./reportWebVitals";
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import { Navigate, Routes ,Route } from 'react-router-dom';
+import HomePage from "./pages/HomePage";
 
 const rootReducer = combineReducers({
 })
@@ -20,8 +21,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
-                <Route exact path="/duel">
-                </Route>
+                <Route exact path="/player" element={<HomePage/>}/>
             </Routes>
             <Navigate to={'/player'}/>
         </BrowserRouter>

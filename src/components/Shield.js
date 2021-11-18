@@ -4,23 +4,25 @@ import '../css/Shield.css'
 class Shield extends Component {
 
     state = {
-        shields: [{}, {}, {}, {}, {}]
+        shields: [{}, {}, {}, {}, {}],
+        untappedCardClassName:'untappedCard',
+        tappedCardClassName:'tapped-card',
+        isTapped:false,
     }
+
+
 
 
     render() {
         const mappedShields = this.state.shields.map(shield =>
-            <div
-                className='duel'
-            >
-            </div>
+            <div className={this.state.untappedCardClassName}/>
         );
 
         return (
+
             <div className='shield'>
                 {mappedShields}
-                <div className='tapped-card'>
-                </div>
+                <div className={this.state.tappedCardClassName}/>
             </div>
 
 

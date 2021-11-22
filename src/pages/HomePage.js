@@ -6,6 +6,8 @@ class HomePage extends Component {
     render() {
         return (
             <div className='container-duel-masters'>
+
+
                 <Arena/>
 
             </div>

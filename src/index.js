@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {Provider} from "react-redux";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ReduxThunk from 'redux-thunk';
 import reportWebVitals from "./reportWebVitals";
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import { Navigate, Routes ,Route } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
+import LoginAndStart from "./pages/LoginAndStart";
+import fetchPlayersReducer from '../src/redux/reducer/FetchPlayersReducer';
 
 const rootReducer = combineReducers({
+    fetchPlayersReducer,
 })
 
 const initialState = {};
@@ -21,12 +23,12 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
-                <Route exact path="/player" element={<HomePage/>}/>
+                <Route exact path="/game" element={<HomePage/>}/>
+                <Route exact path="/login" element={<LoginAndStart/>}/>
             </Routes>
-            <Navigate to={'/player'}/>
         </BrowserRouter>
     </Provider>,
-  document.getElementById('root')
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

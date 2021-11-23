@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {Provider} from "react-redux";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import ReduxThunk from 'redux-thunk';
 import reportWebVitals from "./reportWebVitals";
 import {applyMiddleware, combineReducers, createStore} from "redux";
@@ -22,10 +22,15 @@ const store = createStore(rootReducer, initialState,
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Routes>
-                <Route exact path="/game" element={<HomePage/>}/>
-                <Route exact path="/login" element={<LoginAndStart/>}/>
-            </Routes>
+            <Switch>
+                <Route exact path="/game">
+                    <HomePage/>
+                </Route>
+                <Route exact path="/login">
+                    <LoginAndStart/>
+                </Route>
+
+            </Switch>
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')

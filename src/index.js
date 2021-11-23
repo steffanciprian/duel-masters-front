@@ -9,9 +9,11 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import HomePage from "./pages/HomePage";
 import LoginAndStart from "./pages/LoginAndStart";
 import addPlayerToBattlezoneReducer from "./redux/reducer/AddPlayerToBattlezoneReducer";
+import setIsTappedReducer from "./redux/reducer/SetIsTappedReducer";
 
 const rootReducer = combineReducers({
     addPlayerToBattlezoneReducer,
+    setIsTappedReducer,
 })
 
 const initialState = {};

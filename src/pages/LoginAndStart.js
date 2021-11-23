@@ -20,7 +20,6 @@ class LoginAndStart extends Component {
                     player1: event.target.value
                 }
             )
-            console.log(event.target.value)
         }
 
         const onChangeUsername2 = event => {
@@ -85,7 +84,9 @@ class LoginAndStart extends Component {
                     <label>Username: </label>
                     <input type='text' onChange={event => onChangeUsername2(event)}/>
                 </div>
-                <button>DUEL</button>
+                <button
+                    onClick={()=>this.props.history.push("/game")}
+                >DUEL</button>
             </div>
         )
     }

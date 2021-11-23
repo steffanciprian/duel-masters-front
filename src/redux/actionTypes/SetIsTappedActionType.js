@@ -1,0 +1,1 @@
+export const SET_IS_TAPPED = 'SET_IS_TAPPED'

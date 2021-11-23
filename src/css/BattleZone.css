@@ -1,7 +1,9 @@
 .battleZone {
-    background-color: darkred;
     height: 50%;
     width: 100%;
     margin-top: auto;
     margin-bottom: auto;
+
+    background-color: #63d471;
+    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
 }

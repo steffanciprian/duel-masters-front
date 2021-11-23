@@ -5,12 +5,12 @@ import {
 } from "../actionTypes/FetchPlayersActionType";
 
 const initialState = {
-    players: [],
+    playerDTO: null,
     loading: true,
     error: null,
 }
 
-export default function fetchBooksReducer(state=initialState, action)
+export default function fetchPlayersReducer(state=initialState, action)
 {
     switch (action.type){
         case FETCH_PLAYERS_PENDING:
@@ -31,7 +31,7 @@ export default function fetchBooksReducer(state=initialState, action)
             return{
                 ...state,
                 error:action.payload.error,
-                playerDTO:''
+                playerDTO:null
             }
 
         default:

@@ -9,9 +9,11 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import HomePage from "./pages/HomePage";
 import LoginAndStart from "./pages/LoginAndStart";
 import fetchPlayersReducer from '../src/redux/reducer/FetchPlayersReducer';
+import addPlayerToBattlezoneReducer from "./redux/reducer/AddPlayerToBattlezoneReducer";
 
 const rootReducer = combineReducers({
     fetchPlayersReducer,
+    addPlayerToBattlezoneReducer,
 })
 
 const initialState = {};

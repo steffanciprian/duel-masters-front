@@ -8,20 +8,27 @@ import {withRouter} from "react-router-dom";
 
 class CardsInHand extends Component {
     state = {
-        isTapped: false
+        card:''
     }
 
     render() {
         const {
             hand,
-            isTapped
         } = this.props;
 
         const mappedHand = hand.map(card =>
             <div
                 key={card.cardName}
-                onClick={() => this.props.setIsTappedDispatch(!isTapped)}
-                className={isTapped ? 'tapped-card' : 'untapped-card'}/>
+                // onClick={() => this.props.setIsTappedDispatch(!isTapped)}
+
+
+                onClick={()=>
+                {
+                    card.isTapped = !card.isTapped
+                    this.setState({card:card})
+                }}
+
+                className={this.state.card.isTapped ? 'tapped-card' : 'untapped-card'}/>
         );
         return (
             <div className='cards-in-hand'>

@@ -23,7 +23,6 @@ class Shield extends Component {
             isTapped
         } = this.props;
 
-        console.log(players);
         const mappedShields = shields.map(() =>
             <div onClick={() => console.log(players)} className={this.state.untappedCardClassName}/>
         );

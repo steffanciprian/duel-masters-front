@@ -17,16 +17,10 @@ class CardsInHand extends Component {
             isTapped
         } = this.props;
 
-        const changeTap = card => {
-            console.log(card.cardName)
-            card.isTapped = !card.isTapped;
-        }
-
         const mappedHand = hand.map(card =>
             <div
                 key={card.cardName}
-                // onClick={() => this.props.setIsTappedDispatch(!isTapped)}
-                onClick={() => changeTap(card)}
+                onClick={() => this.props.setIsTappedDispatch(!isTapped)}
                 className={isTapped ? 'tapped-card' : 'untapped-card'}/>
         );
         return (

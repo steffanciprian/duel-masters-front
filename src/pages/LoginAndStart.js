@@ -1,7 +1,6 @@
 import {Component} from "react";
 import '../css/LoginAndStart.css'
 import {connect} from "react-redux";
-import fetchPlayersDispatch from '../redux/dispatch/FetchPlayersDispatch';
 import AddPlayerToBattlezoneDispatch from '../redux/dispatch/AddPlayerToBattlezoneDispatch';
 import {bindActionCreators} from "redux";
 
@@ -29,6 +28,7 @@ class LoginAndStart extends Component {
         }
 
         const {players} = this.props;
+        console.log(players);
 
         const getPlayerDTO = (username) => {
             return fetch('http://localhost:8080/players/my-deck/' + username)
@@ -60,12 +60,10 @@ class LoginAndStart extends Component {
 }
 
 const mapStateToProps = state => ({
-    playerDTO: state.fetchPlayersReducer.playerDTO,
     players: state.addPlayerToBattlezoneReducer.players,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchPlayersDispatch: fetchPlayersDispatch,
     AddPlayerToBattlezoneDispatch: AddPlayerToBattlezoneDispatch,
 }, dispatch)
 

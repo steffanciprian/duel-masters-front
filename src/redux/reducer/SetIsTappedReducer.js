@@ -1,7 +1,7 @@
 import {SET_IS_TAPPED} from "../actionTypes/SetIsTappedActionType";
 
 const initialState = {
-    isTapped: false,
+    id: false,
 }
 
 export default function setIsTappedReducer(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function setIsTappedReducer(state = initialState, action) {
         case SET_IS_TAPPED:
             return {
                 ...state,
-                isTapped: action.payload.isTapped,
+                id: action.payload.id,
             }
         default:
             return state;

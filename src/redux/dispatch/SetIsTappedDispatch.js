@@ -1,5 +1,5 @@
 import {setIsTapped} from '../actions/SetIsTappedAction'
 
-export default function setIsTappedDispatch(isTapped) {
-    return dispatch => dispatch(setIsTapped(isTapped))
+export default function setIsTappedDispatch(id) {
+    return dispatch => dispatch(setIsTapped(id))
 }

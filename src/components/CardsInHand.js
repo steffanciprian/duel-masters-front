@@ -8,27 +8,28 @@ import {withRouter} from "react-router-dom";
 
 class CardsInHand extends Component {
     state = {
-        card:''
+        card:'',
+        rotate:''
     }
 
     render() {
         const {
             hand,
+            id
         } = this.props;
 
-        const mappedHand = hand.map(card =>
+        const mappedHand = hand.map((card,cardId) =>
             <div
-                key={card.cardName}
+                id={cardId}
+                key={cardId}
                 // onClick={() => this.props.setIsTappedDispatch(!isTapped)}
-
-
                 onClick={()=>
                 {
-                    card.isTapped = !card.isTapped
-                    this.setState({card:card})
+                    this.props.setIsTappedDispatch(cardId)
+                    console.log(cardId)
                 }}
 
-                className={this.state.card.isTapped ? 'tapped-card' : 'untapped-card'}/>
+                className={id === cardId ? 'tapped-card' : 'untapped-card'}/>
         );
         return (
             <div className='cards-in-hand'>
@@ -40,7 +41,7 @@ class CardsInHand extends Component {
 
 const mapStateToProps = state => ({
     players: state.addPlayerToBattlezoneReducer.players,
-    isTapped: state.setIsTappedReducer.isTapped,
+    id: state.setIsTappedReducer.id,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

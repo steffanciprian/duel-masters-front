@@ -23,17 +23,26 @@ class CardsInHand extends Component {
             player
         } = this.props;
 
+        const updatePlayerInOrderToTapTheCard = playerToUpdate => {
+            return fetch('http://localhost:8080/players/tap', {method: 'PUT',  headers: {'Content-Type': 'application/json'}, body: JSON.stringify(playerToUpdate)})
+                .then(r => r.json())
+                .then(r => this.props.addPlayerToBattlezoneActionDispatch(r))
+                .catch(error => {
+                        console.log(error)
+                })
+        }
+
         const mappedHand = hand.map((card, cardId) =>
             <div
                 id={cardId}
                 key={cardId}
-                onClick={() => {
-                    player.idToChangeForTapping = card.positionInList
-                    this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
-                    this.props.setIsTappedDispatch(card.isTapped)
-                    console.log(card.positionInList)
-                }}
                 className={card.isTapped ? 'tapped-card' : 'untapped-card'}
+                onClick={() => {
+                    console.log(players)
+                    this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
+                    updatePlayerInOrderToTapTheCard(player).then(r => console.log(r))
+                    player.idToChangeForTapping = card.positionInList
+                }}
             />
         );
         return (

@@ -1,8 +1,8 @@
 import {SET_IS_TAPPED} from "../actionTypes/SetIsTappedActionType";
 
-export function setIsTapped(id) {
+export function setIsTapped(isTapped) {
     return {
         type: SET_IS_TAPPED,
-        payload: {id}
+        payload: {isTapped}
     }
 }

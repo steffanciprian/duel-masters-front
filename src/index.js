@@ -10,10 +10,12 @@ import HomePage from "./pages/HomePage";
 import LoginAndStart from "./pages/LoginAndStart";
 import addPlayerToBattlezoneReducer from "./redux/reducer/AddPlayerToBattlezoneReducer";
 import setIsTappedReducer from "./redux/reducer/SetIsTappedReducer";
+import setPositionInListCardToBeTappedReducer from "./redux/reducer/SetPositionInListCardToBeTappedReducer";
 
 const rootReducer = combineReducers({
     addPlayerToBattlezoneReducer,
     setIsTappedReducer,
+    setPositionInListCardToBeTappedReducer,
 })
 
 const initialState = {};

@@ -25,11 +25,11 @@ class CardsInHand extends Component {
                 // onClick={() => this.props.setIsTappedDispatch(!isTapped)}
                 onClick={()=>
                 {
-                    this.props.setIsTappedDispatch(cardId)
-                    console.log(cardId)
+                    this.props.setIsTappedDispatch(card.id)
+                    console.log(card.id)
                 }}
 
-                className={id === cardId ? 'tapped-card' : 'untapped-card'}/>
+                className={id === card.id ? 'tapped-card' : 'untapped-card'}/>
         );
         return (
             <div className='cards-in-hand'>

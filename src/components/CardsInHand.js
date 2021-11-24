@@ -39,6 +39,7 @@ class CardsInHand extends Component {
                 className={card.isTapped ? 'tapped-card' : 'untapped-card'}
                 onClick={() => {
                     console.log(players)
+                    console.log(card.positionInList)
                     this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
                     updatePlayerInOrderToTapTheCard(player).then(r => console.log(r))
                     player.idToChangeForTapping = card.positionInList

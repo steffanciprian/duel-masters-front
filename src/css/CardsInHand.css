@@ -9,10 +9,10 @@
 }
 
 .untapped-card{
-    background-image: url("../assets/duelMastersCard.PNG");
     background-size: contain;
     width: 3%;
     height: 95%;
     background-repeat: no-repeat;
     margin-inline: 1%;
 }
+

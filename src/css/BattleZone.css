@@ -25,3 +25,45 @@
     justify-content: center;
     align-content: center;
 }
+
+.tapped-battlezone{
+    margin-inline: 2%;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    width: 3%;
+    height: 95%;
+}
+
+.untapped-battlezone{
+    margin-inline: 2%;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+    background-size: contain;
+    width: 3%;
+    height: 95%;
+    background-repeat: no-repeat;
+}
+
+.untapped-battlezone:hover{
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    height: 80%;
+    width: 20%;
+    margin: auto;
+}

@@ -18,7 +18,7 @@ class BattleZone extends Component {
         const mappedAttackZonePlayer1 = players[0].attackZone.map(
             card => <div
                 key={card.positionInList}
-                className={card.isTapped ? 'tapped-card' : 'untapped-card'}
+                className={card.isTapped ? 'tapped-battlezone' : 'untapped-battlezone'}
                 onClick={() => {
                     this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
                     players[0].idToChangeForTapping = card.positionInList
@@ -26,7 +26,7 @@ class BattleZone extends Component {
                 }}
             >
                 <img
-                    style={{width:'100%',height:'100%'}}
+                    style={{width: '100%', height: '100%'}}
                     src={`data:image/jpeg;base64,${card.cardImage}`}/>
             </div>
         )
@@ -42,11 +42,10 @@ class BattleZone extends Component {
         }
 
 
-
         const mappedAttackZonePlayer2 = players[1].attackZone.map(
             card => <div
                 key={card.positionInList}
-                className={card.isTapped ? 'tapped-card' : 'untapped-card'}
+                className={card.isTapped ? 'tapped-battlezone' : 'untapped-battlezone'}
                 onClick={() => {
                     this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
                     players[1].idToChangeForTapping = card.positionInList
@@ -54,7 +53,7 @@ class BattleZone extends Component {
                 }}
             >
                 <img
-                    style={{width:'100%',height:'100%'}}
+                    style={{width: '100%', height: '100%'}}
                     src={`data:image/jpeg;base64,${card.cardImage}`}/>
             </div>
         )

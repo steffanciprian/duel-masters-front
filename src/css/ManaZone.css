@@ -9,7 +9,7 @@
 }
 
 
-.untappedCardMana{
+.untappedCardMana {
     /*background-image: url("../assets/duelMastersCard.PNG");*/
     background-size: contain;
     width: 3%;
@@ -18,11 +18,11 @@
     margin-inline: 1%;
 }
 
-.untappedCardMana:hover{
+.untappedCardMana:hover {
     cursor: pointer;
 }
 
-.tappedCardMana{
+.tappedCardMana {
     /*background-image: url("../assets/duelMastersTappedCard.PNG");*/
     background-size: cover;
     width: 4%;
@@ -30,11 +30,11 @@
     background-repeat: no-repeat;
 }
 
-.tappedCardMana:hover{
+.tappedCardMana:hover {
     cursor: pointer;
 }
 
-.card-default{
+.card-default {
     margin-inline: 2%;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
@@ -45,7 +45,17 @@
     -o-transition-property: -o-transform;
     transition-property: transform;
 }
-.card-rotate{
+
+.card-default:hover {
+    /*transform: scale(2);*/
+    z-index: 2;
+    position: absolute;
+    height: 80%;
+    margin: auto;
+}
+
+.card-rotate {
+    margin-inline: 2%;
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;

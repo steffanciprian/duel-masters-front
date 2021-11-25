@@ -26,7 +26,6 @@ class BattleZone extends Component {
                 }}
             >
                 <img
-                    onClick={()=> console.log(card.isTapped)}
                     style={{width:'100%',height:'100%'}}
                     src={`data:image/jpeg;base64,${card.cardImage}`}/>
             </div>
@@ -55,7 +54,6 @@ class BattleZone extends Component {
                 }}
             >
                 <img
-                    onClick={()=> console.log(card.isTapped)}
                     style={{width:'100%',height:'100%'}}
                     src={`data:image/jpeg;base64,${card.cardImage}`}/>
             </div>

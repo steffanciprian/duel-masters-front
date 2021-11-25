@@ -12,21 +12,8 @@ class ManaZone extends Component {
     render() {
         const {
             manaZone,
-            player,
-
-        } =
-            this.props;
-
-        const updatePlayerInOrderToUpdateTheManaZone = playerToUpdate => {
-            return fetch('http://localhost:8080/players/card-to-manazone', {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(playerToUpdate)
-            })
-                .then(r => r.json())
-                .then(r => this.props.addPlayerToBattlezoneActionDispatch(r))
-                .catch(error => console.log(error))
-        }
+            player
+        } = this.props;
 
         const updatePlayerInOrderToTapTheCard = playerToUpdate => {
             return fetch('http://localhost:8080/players/tap', {
@@ -43,31 +30,23 @@ class ManaZone extends Component {
             (manaZone).map(card =>
                 <div
                     key={card.positionInList}
-                    // className={card.isTapped ? 'tappedCardMana' : 'untappedCardMana'}
                     className={card.isTapped ? 'card-rotate' : 'card-default'}
                     onClick={() => {
-                        console.log(card.isTapped)
                         this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
-                        // player.cardIdToPutInManaZone = card.positionInList
-                        // updatePlayerInOrderToUpdateTheManaZone(player)
                         player.idToChangeForTapping = card.positionInList
                         updatePlayerInOrderToTapTheCard(player)
-                        console.log(card.isTapped)
                     }}
                 >
-
                     <img
-                        onClick={()=> console.log(card.isTapped)}
-                        style={{width:'100%',height:'100%'}}
+                        onClick={() => console.log(card.isTapped)}
+                        style={{width: '100%', height: '100%'}}
                         src={`data:image/jpeg;base64,${card.cardImage}`}/>
                 </div>
             );
 
         return (
             <div className='mana-zone'>
-                {
-                    manaZone && manaZone ? mappedManaZone : null
-                }
+                {manaZone && manaZone ? mappedManaZone : null}
             </div>
         )
     }

@@ -60,17 +60,17 @@ class CardsInHand extends Component {
         const mappedHand = hand.map(card =>
             <div
                 key={card.positionInList}
-                className={card.isTapped ? 'tapped-card' : 'untapped-card'}
+                className={card.isTapped ? 'card-rotate' : 'card-default'}
                 onClick={() => {
                     this.setState({
                         currentCard: card,
                         isOpen: true
                     })
-                    // this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
-                    // player.idToChangeForTapping = card.positionInList
-                    // updatePlayerInOrderToTapTheCard(player)
-                }}
-            />
+                }}>
+                <img
+                    style={{width: '100%', height: '100%'}}
+                    src={`data:image/jpeg;base64,${card.cardImage}`}/>
+            </div>
         );
         return (
             <div className='cards-in-hand'>

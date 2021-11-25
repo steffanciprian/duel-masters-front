@@ -8,32 +8,6 @@
     background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%);
 }
 
-
-.untappedCardMana {
-    /*background-image: url("../assets/duelMastersCard.PNG");*/
-    background-size: contain;
-    width: 3%;
-    height: 95%;
-    background-repeat: no-repeat;
-    margin-inline: 1%;
-}
-
-.untappedCardMana:hover {
-    cursor: pointer;
-}
-
-.tappedCardMana {
-    /*background-image: url("../assets/duelMastersTappedCard.PNG");*/
-    background-size: cover;
-    width: 4%;
-    height: 75%;
-    background-repeat: no-repeat;
-}
-
-.tappedCardMana:hover {
-    cursor: pointer;
-}
-
 .card-default {
     margin-inline: 2%;
     -webkit-transition-duration: 1s;
@@ -47,7 +21,7 @@
 }
 
 .card-default:hover {
-    /*transform: scale(2);*/
+    cursor: pointer;
     z-index: 2;
     position: absolute;
     height: 80%;

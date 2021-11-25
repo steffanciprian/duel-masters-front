@@ -69,6 +69,7 @@ class CardsInHand extends Component {
                 key={card.positionInList}
                 className={card.isTapped ? 'card-rotate' : 'card-default'}
                 onClick={() => {
+                    console.log(card.positionInList)
                     this.setState({
                         currentCard: card,
                         isOpen: true
@@ -80,9 +81,7 @@ class CardsInHand extends Component {
             </div>
         );
 
-        const mappedAvailableManaPlayer1 = manaZone.map(
-            card=>
-
+        const mappedAvailableManaPlayer1 = manaZone.map(card=>
                 !card.isTapped ?
                 <div
                     key={card.positionInList}
@@ -98,9 +97,7 @@ class CardsInHand extends Component {
                         src={`data:image/jpeg;base64,${card.cardImage}`}/>
                 </div>
                     : null
-
         );
-
 
         return (
             <div className='cards-in-hand'>
@@ -119,6 +116,9 @@ class CardsInHand extends Component {
                         }}>
                             Put into mana zone
                         </button>
+
+
+
                         <button onClick={() => {
                             this.setState({
                                 isOpen: false,
@@ -131,6 +131,8 @@ class CardsInHand extends Component {
                         }}>
                             Put into battle zone
                         </button>
+
+
                     </div>
                 </Modal>
 

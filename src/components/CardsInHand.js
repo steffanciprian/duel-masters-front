@@ -24,11 +24,19 @@ class CardsInHand extends Component {
         } = this.props;
 
         const updatePlayerInOrderToTapTheCard = playerToUpdate => {
-            return fetch('http://localhost:8080/players/tap', {method: 'PUT',  headers: {'Content-Type': 'application/json'}, body: JSON.stringify(playerToUpdate)})
+            return fetch('http://localhost:8080/players/tap', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(playerToUpdate)
+            })
                 .then(r => r.json())
-                .then(r => this.props.addPlayerToBattlezoneActionDispatch(r))
+                .then(r => {
+                    console.log("player cu tapped = ! tapped")
+                    console.log(r)
+                        this.props.addPlayerToBattlezoneActionDispatch(r)
+                    }
+                )
                 .catch(error => {
-                        console.log(error)
                 })
         }
 
@@ -38,11 +46,16 @@ class CardsInHand extends Component {
                 key={cardId}
                 className={card.isTapped ? 'tapped-card' : 'untapped-card'}
                 onClick={() => {
-                    console.log(players)
                     console.log(card.positionInList)
+                    console.log("before update")
+                    console.log(player)
+                    console.log(card.isTapped)
                     this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
-                    updatePlayerInOrderToTapTheCard(player).then(r => console.log(r))
                     player.idToChangeForTapping = card.positionInList
+                    updatePlayerInOrderToTapTheCard(player)
+                    console.log(card.isTapped)
+                    console.log("after update")
+                    console.log(player)
                 }}
             />
         );

@@ -16,7 +16,7 @@ export default function addPlayerToBattlezoneReducer(state = initialState, actio
                 ...state,
                 players:
                     state.players.map(
-                        player => player.id === action.id ? action.payload.player : player
+                        player => player.id === action.payload.player.id ? action.payload.player : player
                     )
             }
 

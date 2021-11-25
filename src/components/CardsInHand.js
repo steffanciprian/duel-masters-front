@@ -17,9 +17,6 @@ class CardsInHand extends Component {
     render() {
         const {
             hand,
-            id,
-            isTapped,
-            players,
             player
         } = this.props;
 
@@ -30,32 +27,31 @@ class CardsInHand extends Component {
                 body: JSON.stringify(playerToUpdate)
             })
                 .then(r => r.json())
-                .then(r => {
-                    console.log("player cu tapped = ! tapped")
-                    console.log(r)
-                        this.props.addPlayerToBattlezoneActionDispatch(r)
-                    }
-                )
-                .catch(error => {
-                })
+                .then(r => this.props.addPlayerToBattlezoneActionDispatch(r))
+                .catch(error => console.log(error))
         }
 
-        const mappedHand = hand.map((card, cardId) =>
+        const updatePlayerInOrderToUpdateTheManaZone = playerToUpdate => {
+            return fetch('http://localhost:8080/players/card-to-manazone', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(playerToUpdate)
+            })
+                .then(r => r.json())
+                .then(r => this.props.addPlayerToBattlezoneActionDispatch(r))
+                .catch(error => console.log(error))
+        }
+
+        const mappedHand = hand.map(card =>
             <div
-                id={cardId}
-                key={cardId}
+                key={card.positionInList}
                 className={card.isTapped ? 'tapped-card' : 'untapped-card'}
                 onClick={() => {
-                    console.log(card.positionInList)
-                    console.log("before update")
-                    console.log(player)
-                    console.log(card.isTapped)
                     this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
-                    player.idToChangeForTapping = card.positionInList
-                    updatePlayerInOrderToTapTheCard(player)
-                    console.log(card.isTapped)
-                    console.log("after update")
-                    console.log(player)
+                    player.cardIdToPutInManaZone = card.positionInList
+                    // player.idToChangeForTapping = card.positionInList
+                    // updatePlayerInOrderToTapTheCard(player)
+                    updatePlayerInOrderToUpdateTheManaZone(player)
                 }}
             />
         );

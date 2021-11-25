@@ -17,11 +17,11 @@ class Arena extends Component {
         return (
             <div className='arena'>
                 <CardsInHand player={players[0]} hand={players[0].hand}/>
-                <ManaZone/>
+                <ManaZone player={players[0]} manaZone={players[0].manaZone}/>
                 <Shield shields={players[0].shieldZone}/>
                 <BattleZone/>
                 <Shield shields={players[1].shieldZone}/>
-                <ManaZone/>
+                <ManaZone player={players[1]} manaZone={players[1].manaZone}/>
                 <CardsInHand player={players[1]} hand={players[1].hand}/>
             </div>
         )

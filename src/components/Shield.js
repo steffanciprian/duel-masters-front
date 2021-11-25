@@ -5,7 +5,7 @@ import AddPlayerToBattlezoneDispatch from "../redux/dispatch/AddPlayerToBattlezo
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import setIsTappedDispatch from "../redux/dispatch/SetIsTappedDispatch";
-import duelMastersImageForDeck from '../assets/duelMastersCard.PNG';
+import duelMastersImageForDeck from '../assets/deckImage.jpeg';
 import SetPositionInListCardToBeTappedDispatch from "../redux/dispatch/SetPositionInListCardToBeTappedDispatch";
 import addPlayerToBattlezoneActionDispatch from "../redux/dispatch/UpdatePlayerDispatch";
 

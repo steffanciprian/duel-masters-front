@@ -9,9 +9,7 @@ import {connect} from "react-redux";
 import '../css/BattleZone.css'
 
 class BattleZone extends Component {
-
     render() {
-
         const {players}
             = this.props;
 

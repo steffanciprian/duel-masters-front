@@ -10,17 +10,15 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
 class Arena extends Component {
-
     render() {
         const {players} = this.props;
-
         return (
             <div className='arena'>
                 <CardsInHand player={players[0]} hand={players[0].hand}/>
                 <ManaZone player={players[0]} manaZone={players[0].manaZone}/>
-                <Shield shields={players[0].shieldZone}/>
+                <Shield player={players[0]} shields={players[0].shieldZone} deck={players[0].deck}/>
                 <BattleZone/>
-                <Shield shields={players[1].shieldZone}/>
+                <Shield player={players[1]} shields={players[1].shieldZone} deck={players[1].deck}/>
                 <ManaZone player={players[1]} manaZone={players[1].manaZone}/>
                 <CardsInHand player={players[1]} hand={players[1].hand}/>
             </div>

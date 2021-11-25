@@ -5,11 +5,13 @@ import AddPlayerToBattlezoneDispatch from "../redux/dispatch/AddPlayerToBattlezo
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import setIsTappedDispatch from "../redux/dispatch/SetIsTappedDispatch";
+import duelMastersImageForDeck from '../assets/duelMastersCard.PNG';
+import SetPositionInListCardToBeTappedDispatch from "../redux/dispatch/SetPositionInListCardToBeTappedDispatch";
+import addPlayerToBattlezoneActionDispatch from "../redux/dispatch/UpdatePlayerDispatch";
 
 class Shield extends Component {
 
     state = {
-        shields: [{}, {}, {}, {}, {}],
         untappedCardClassName: 'untappedCard',
         tappedCardClassName: 'tapped-card',
         isTapped: false,
@@ -17,10 +19,21 @@ class Shield extends Component {
 
     render() {
 
+        const drawCardFromDeck = playerToUpdate => {
+            return fetch('http://localhost:8080/players/draw-card', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(playerToUpdate)
+            })
+                .then(r => r.json())
+                .then(r => this.props.addPlayerToBattlezoneActionDispatch(r))
+                .catch(error => console.log(error))
+        }
+
         const {
             players,
             shields,
-            isTapped
+            player
         } = this.props;
 
         const mappedShields = shields.map(() =>
@@ -30,7 +43,12 @@ class Shield extends Component {
         return (
             <div className='shield'>
                 {mappedShields}
-                {/*<div onClick={() => console.log(players)} className={this.state.tappedCardClassName}/>*/}
+                <div
+                    onClick={() => {
+                        drawCardFromDeck(player)
+                    }}>
+                    <img className='img-style' src={duelMastersImageForDeck}/>
+                </div>
             </div>
         )
     }
@@ -38,12 +56,15 @@ class Shield extends Component {
 
 const mapStateToProps = state => ({
     players: state.addPlayerToBattlezoneReducer.players,
+    id: state.setPositionInListCardToBeTappedReducer.id,
     isTapped: state.setIsTappedReducer.isTapped,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     AddPlayerToBattlezoneDispatch: AddPlayerToBattlezoneDispatch,
     setIsTappedDispatch: setIsTappedDispatch,
+    SetPositionInListCardToBeTappedDispatch: SetPositionInListCardToBeTappedDispatch,
+    addPlayerToBattlezoneActionDispatch: addPlayerToBattlezoneActionDispatch,
 }, dispatch)
 
 export default connect(mapStateToProps,

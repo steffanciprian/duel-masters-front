@@ -7,18 +7,35 @@ import SetPositionInListCardToBeTappedDispatch from "../redux/dispatch/SetPositi
 import addPlayerToBattlezoneActionDispatch from "../redux/dispatch/UpdatePlayerDispatch";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import Modal from 'react-modal';
 
 class CardsInHand extends Component {
     state = {
         card: '',
-        rotate: ''
+        rotate: '',
+        isOpen: false,
+        currentCard:''
     }
 
     render() {
+        let subtitle;
+
         const {
             hand,
             player
         } = this.props;
+
+        const customStyles = {
+            content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+                backgroundColor:'green',
+            },
+        };
 
         const updatePlayerInOrderToTapTheCard = playerToUpdate => {
             return fetch('http://localhost:8080/players/tap', {
@@ -47,17 +64,39 @@ class CardsInHand extends Component {
                 key={card.positionInList}
                 className={card.isTapped ? 'tapped-card' : 'untapped-card'}
                 onClick={() => {
-                    this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
-                    player.cardIdToPutInManaZone = card.positionInList
+                    this.setState({
+                        currentCard:card,
+                        isOpen: true
+                    })
+                    // this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
                     // player.idToChangeForTapping = card.positionInList
                     // updatePlayerInOrderToTapTheCard(player)
-                    updatePlayerInOrderToUpdateTheManaZone(player)
                 }}
             />
         );
         return (
             <div className='cards-in-hand'>
                 {mappedHand}
+                <Modal
+                    isOpen={this.state.isOpen}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                    onRequestClose={() => this.setState({isOpen: false})}
+                >
+                    <div className='button-container'>
+                        <button onClick={() =>
+                        {
+                            this.setState({isOpen:false})
+                            player.cardIdToPutInManaZone = this.state.currentCard.positionInList
+                            updatePlayerInOrderToUpdateTheManaZone(player)
+                        }}>
+                            Put into mana zone
+                        </button>
+                        <button onClick={() => console.log("mana zone ")}>
+                            Put into battle zone
+                        </button>
+                    </div>
+                </Modal>
             </div>
         )
     }

@@ -14,12 +14,10 @@ class CardsInHand extends Component {
         card: '',
         rotate: '',
         isOpen: false,
-        currentCard:''
+        currentCard: ''
     }
 
     render() {
-        let subtitle;
-
         const {
             hand,
             player
@@ -33,12 +31,12 @@ class CardsInHand extends Component {
                 bottom: 'auto',
                 marginRight: '-50%',
                 transform: 'translate(-50%, -50%)',
-                backgroundColor:'green',
+                backgroundColor: 'green',
             },
         };
 
-        const updatePlayerInOrderToTapTheCard = playerToUpdate => {
-            return fetch('http://localhost:8080/players/tap', {
+        const updatePlayerInOrderToUpdateTheManaZone = playerToUpdate => {
+            return fetch('http://localhost:8080/players/card-to-manazone', {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(playerToUpdate)
@@ -48,8 +46,8 @@ class CardsInHand extends Component {
                 .catch(error => console.log(error))
         }
 
-        const updatePlayerInOrderToUpdateTheManaZone = playerToUpdate => {
-            return fetch('http://localhost:8080/players/card-to-manazone', {
+        const updatePlayerInOrderToUpdateTheAttackZone = playerToUpdate => {
+            return fetch('http://localhost:8080/players/card-to-attackzone', {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(playerToUpdate)
@@ -65,7 +63,7 @@ class CardsInHand extends Component {
                 className={card.isTapped ? 'tapped-card' : 'untapped-card'}
                 onClick={() => {
                     this.setState({
-                        currentCard:card,
+                        currentCard: card,
                         isOpen: true
                     })
                     // this.props.SetPositionInListCardToBeTappedDispatch(card.positionInList)
@@ -84,15 +82,22 @@ class CardsInHand extends Component {
                     onRequestClose={() => this.setState({isOpen: false})}
                 >
                     <div className='button-container'>
-                        <button onClick={() =>
-                        {
-                            this.setState({isOpen:false})
+                        <button onClick={() => {
+                            this.setState({isOpen: false})
                             player.cardIdToPutInManaZone = this.state.currentCard.positionInList
                             updatePlayerInOrderToUpdateTheManaZone(player)
                         }}>
                             Put into mana zone
                         </button>
-                        <button onClick={() => console.log("mana zone ")}>
+                        <button onClick={() => {
+                            this.setState({
+                                isOpen: false
+                            })
+                            player.cardIdToPutInAttackZone = this.state.currentCard.positionInList
+                            console.log(player.cardIdToPutInAttackZone)
+                            console.log(this.state.currentCard.positionInList)
+                            updatePlayerInOrderToUpdateTheAttackZone(player)
+                        }}>
                             Put into battle zone
                         </button>
                     </div>

@@ -14,13 +14,15 @@ class CardsInHand extends Component {
         card: '',
         rotate: '',
         isOpen: false,
-        currentCard: ''
+        currentCard: '',
+        modalCardsCiv: false,
     }
 
     render() {
         const {
             hand,
-            player
+            player,
+            manaZone
         } = this.props;
 
         const customStyles = {
@@ -32,6 +34,11 @@ class CardsInHand extends Component {
                 marginRight: '-50%',
                 transform: 'translate(-50%, -50%)',
                 backgroundColor: 'green',
+                display:'flex',
+                flexDirection:'row',
+                justifyContent:'center',
+                height:'30%',
+                width:'100%'
             },
         };
 
@@ -72,6 +79,29 @@ class CardsInHand extends Component {
                     src={`data:image/jpeg;base64,${card.cardImage}`}/>
             </div>
         );
+
+        const mappedAvailableManaPlayer1 = manaZone.map(
+            card=>
+
+                !card.isTapped ?
+                <div
+                    key={card.positionInList}
+                    className={'choose-cards-for-mana'}
+                    onClick={() => {
+                        this.setState({
+                            currentCard: card,
+                            isOpen: true
+                        })
+                    }}>
+                    <img
+                        style={{width: '100%', height: '100%'}}
+                        src={`data:image/jpeg;base64,${card.cardImage}`}/>
+                </div>
+                    : null
+
+        );
+
+
         return (
             <div className='cards-in-hand'>
                 {mappedHand}
@@ -91,7 +121,8 @@ class CardsInHand extends Component {
                         </button>
                         <button onClick={() => {
                             this.setState({
-                                isOpen: false
+                                isOpen: false,
+                                modalCardsCiv: true
                             })
                             player.cardIdToPutInAttackZone = this.state.currentCard.positionInList
                             console.log(player.cardIdToPutInAttackZone)
@@ -102,6 +133,16 @@ class CardsInHand extends Component {
                         </button>
                     </div>
                 </Modal>
+
+                <Modal
+                    isOpen={this.state.modalCardsCiv}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                    onRequestClose={() => this.setState({modalCardsCiv: false})}
+                >
+                    {mappedAvailableManaPlayer1}
+                </Modal>
+
             </div>
         )
     }
